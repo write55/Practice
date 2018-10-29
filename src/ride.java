@@ -27,5 +27,4 @@ class ride {
             out.println("STAY");
         out.close();
     }
-
 }

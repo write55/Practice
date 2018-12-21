@@ -4,6 +4,7 @@ import java.nio.charset.Charset;
 import java.nio.file.*;
 import java.util.ArrayList;
 //https://stackoverflow.com/questions/17565269/calculate-fft-from-audio-file
+// FFMPEG, java wrapper
 
 public class FileHandler {
 

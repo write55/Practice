@@ -156,7 +156,17 @@ public class Picture extends SimplePicture {
 	}
 
 	public void mirrorDiagonal() {
-
+		Pixel[][] pixels = this.getPixels2D();
+		Pixel topRightPixel = null;
+		Pixel bottomLeftPixel = null;
+		int side = pixels.length;
+		for (int row = 0; row < side; row++) {
+			for (int col = 0; col < row; col++) {
+				bottomLeftPixel = pixels[row][col];
+				topRightPixel = pixels[col][row];
+				topRightPixel.setColor(bottomLeftPixel.getColor());
+			}
+		}
 	}
 
 	/** Mirror just part of a picture of a temple */
@@ -166,17 +176,36 @@ public class Picture extends SimplePicture {
 		Pixel rightPixel = null;
 		int count = 0;
 		Pixel[][] pixels = this.getPixels2D();
-
 		// loop through the rows
 		for (int row = 27; row < 97; row++) {
 			// loop from 13 to just before the mirror point
 			for (int col = 13; col < mirrorPoint; col++) {
-
+				count++;
 				leftPixel = pixels[row][col];
 				rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
 				rightPixel.setColor(leftPixel.getColor());
 			}
 		}
+		System.out.println("Should be 18410, is " + count);
+	}
+
+	public void mirrorArms() {
+		// 157,104/197,294/r/c
+		int mirrorPoint = 196;
+		Pixel topPixel = null;
+		Pixel bottomPixel = null;
+		Pixel[][] pixels = this.getPixels2D();
+		for (int row = 157; row < 196; row++) {
+			for (int col = 104; col < 294; col++) {
+				topPixel = pixels[row][col];
+				bottomPixel = pixels[mirrorPoint - row + mirrorPoint][col];
+				bottomPixel.setColor(topPixel.getColor());
+			}
+		}
+	}
+	
+	public void mirrorGull(){
+		
 	}
 
 	/**
@@ -249,11 +278,11 @@ public class Picture extends SimplePicture {
 	/*
 	 * Main method for testing - each class in Java can have a main method
 	 */
-	public static void main(String[] args) {
-		Picture beach = new Picture("beach.jpg");
-		beach.explore();
-		beach.zeroBlue();
-		beach.explore();
-	}
+	// public static void main(String[] args) {
+	// Picture beach = new Picture("beach.jpg");
+	// beach.explore();
+	// beach.zeroBlue();
+	// beach.explore();
+	// }
 
 } // this } is the end of class Picture, put all new methods before this

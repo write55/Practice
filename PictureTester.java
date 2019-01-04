@@ -22,26 +22,28 @@ public class PictureTester {
 		caterpillar.explore();
 	}
 
-	/** Method to test mirrorVerticalRightToLeft */
 	public static void testMirrorVerticalRightToLeft() {
 		Picture caterpillar = new Picture("caterpillar.jpg");
-		caterpillar.explore();
 		caterpillar.mirrorVerticalRightToLeft();
 		caterpillar.explore();
 	}
 
 	public static void testMirrorHorizontal() {
 		Picture bike = new Picture("redMotorcycle.jpg");
-		bike.explore();
 		bike.mirrorHorizontal();
 		bike.explore();
 	}
-	
+
 	public static void testMirrorHorizontalBotToTop() {
 		Picture bike = new Picture("blueMotorcycle.jpg");
-		bike.explore();
 		bike.mirrorHorizontalBotToTop();
 		bike.explore();
+	}
+
+	public static void testMirrorDiagonal() {
+		Picture beach = new Picture("beach.jpg");
+		beach.mirrorDiagonal();
+		beach.explore();
 	}
 
 	/** Method to test mirrorTemple */
@@ -50,6 +52,20 @@ public class PictureTester {
 		temple.explore();
 		temple.mirrorTemple();
 		temple.explore();
+	}
+
+	public static void testMirrorArms() {
+		Picture snowman = new Picture("snowman.jpg");
+		snowman.explore();
+		snowman.mirrorArms();
+		snowman.explore();
+	}
+
+	public static void testMirrorGull() {
+		Picture gull = new Picture("seagull.jpg");
+		gull.explore();
+		gull.mirrorGull();
+		gull.explore();
 	}
 
 	/** Method to test the collage method */
@@ -70,9 +86,6 @@ public class PictureTester {
 	 * Main method for testing. Every class can have a main method in Java
 	 */
 	public static void main(String[] args) {
-		// uncomment a call here to run a test
-		// and comment out the ones you don't want
-		// to run
 		// testZeroBlue();
 		// testKeepOnlyBlue();
 		// testKeepOnlyRed();
@@ -81,12 +94,12 @@ public class PictureTester {
 		// testGrayscale();
 		// testFixUnderwater();
 		// testMirrorVerticalRightToLeft();
-		testMirrorHorizontal();
-		testMirrorHorizontalBotToTop();
+		// testMirrorHorizontal();
+		// testMirrorHorizontalBotToTop();
+		// testMirrorDiagonal();
 		// testMirrorTemple();
 		// testMirrorArms();
-		// testMirrorGull();
-		// testMirrorDiagonal();
+		testMirrorGull();
 		// testCollage();
 		// testCopy();
 		// testEdgeDetection();
@@ -98,4 +111,5 @@ public class PictureTester {
 		// testClearBlueOverValue(200);
 		// testGetAverageForColumn(0);
 	}
+
 }

@@ -75,6 +75,22 @@ public class PictureTester {
 		canvas.explore();
 	}
 
+	public static void testCopy() {
+		Picture canvas = new Picture("640x480.jpg");
+		Picture flower1 = new Picture("flower1.jpg");
+		Picture flower2 = new Picture("flower2.jpg");
+		canvas.copyBounds(flower1, 0, 200, 0, 0);
+		canvas.copyBounds(flower2, 0, 100, 0, 10);
+		canvas.explore();
+	}
+
+	public static void myCollage() {
+		Picture canvas = new Picture("640x480.jpg");
+		Picture beach = new Picture("beach.jpg");
+		canvas.copyBounds(beach, 0, 200, 0, 0);
+		canvas.explore();
+	}
+
 	/** Method to test edgeDetection */
 	public static void testEdgeDetection() {
 		Picture swan = new Picture("swan.jpg");
@@ -99,8 +115,9 @@ public class PictureTester {
 		// testMirrorDiagonal();
 		// testMirrorTemple();
 		// testMirrorArms();
-		testMirrorGull();
+		// testMirrorGull();
 		// testCollage();
+		myCollage();
 		// testCopy();
 		// testEdgeDetection();
 		// testEdgeDetection2();

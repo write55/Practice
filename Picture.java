@@ -190,7 +190,6 @@ public class Picture extends SimplePicture {
 	}
 
 	public void mirrorArms() {
-		// 157,104/197,294/r/c
 		int mirrorPoint = 196;
 		Pixel topPixel = null;
 		Pixel bottomPixel = null;
@@ -203,9 +202,20 @@ public class Picture extends SimplePicture {
 			}
 		}
 	}
-	
-	public void mirrorGull(){
-		
+
+	public void mirrorGull() {
+		// 231 233 to 328 348
+		int mirrorPoint = 348;
+		Pixel leftPixel = null;
+		Pixel rightPixel = null;
+		Pixel[][] pixels = this.getPixels2D();
+		for (int row = 231; row < 328; row++) {
+			for (int col = 233; col < mirrorPoint; col++) {
+				leftPixel = pixels[row][col];
+				rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
+				rightPixel.setColor(leftPixel.getColor());
+			}
+		}
 	}
 
 	/**
@@ -227,6 +237,23 @@ public class Picture extends SimplePicture {
 		for (int fromRow = 0, toRow = startRow; fromRow < fromPixels.length
 				&& toRow < toPixels.length; fromRow++, toRow++) {
 			for (int fromCol = 0, toCol = startCol; fromCol < fromPixels[0].length
+					&& toCol < toPixels[0].length; fromCol++, toCol++) {
+				fromPixel = fromPixels[fromRow][fromCol];
+				toPixel = toPixels[toRow][toCol];
+				toPixel.setColor(fromPixel.getColor());
+			}
+		}
+	}
+
+	// Second Copy method
+	public void copyBounds(Picture fromPic, int startRow, int endRow, int startCol, int endCol) {
+		Pixel fromPixel = null;
+		Pixel toPixel = null;
+		Pixel[][] toPixels = this.getPixels2D();
+		Pixel[][] fromPixels = fromPic.getPixels2D();
+		for (int fromRow = startRow, toRow = endRow; fromRow < fromPixels.length
+				&& toRow < toPixels.length; fromRow++, toRow++) {
+			for (int fromCol = startCol, toCol = endCol; fromCol < fromPixels[0].length
 					&& toCol < toPixels[0].length; fromCol++, toCol++) {
 				fromPixel = fromPixels[fromRow][fromCol];
 				toPixel = toPixels[toRow][toCol];

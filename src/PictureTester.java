@@ -6,7 +6,9 @@
  * @author Barbara Ericson
  */
 public class PictureTester {
-    /** Method to test zeroBlue */
+    /**
+     * Method to test zeroBlue
+     */
     public static void testZeroBlue() {
         Picture beach = new Picture("beach.jpg");
         beach.explore();
@@ -14,7 +16,9 @@ public class PictureTester {
         beach.explore();
     }
 
-    /** Method to test mirrorVertical */
+    /**
+     * Method to test mirrorVertical
+     */
     public static void testMirrorVertical() {
         Picture caterpillar = new Picture("caterpillar.jpg");
         caterpillar.explore();
@@ -46,7 +50,9 @@ public class PictureTester {
         beach.explore();
     }
 
-    /** Method to test mirrorTemple */
+    /**
+     * Method to test mirrorTemple
+     */
     public static void testMirrorTemple() {
         Picture temple = new Picture("temple.jpg");
         temple.explore();
@@ -68,7 +74,9 @@ public class PictureTester {
         gull.explore();
     }
 
-    /** Method to test the collage method */
+    /**
+     * Method to test the collage method
+     */
     public static void testCollage() {
         Picture canvas = new Picture("640x480.jpg");
         canvas.createCollage();
@@ -79,19 +87,24 @@ public class PictureTester {
         Picture canvas = new Picture("640x480.jpg");
         Picture flower1 = new Picture("flower1.jpg");
         Picture flower2 = new Picture("flower2.jpg");
-        canvas.copyBounds(flower1, 0, 200, 0, 0);
-        canvas.copyBounds(flower2, 0, 100, 0, 10);
+        canvas.copyBounds(flower1, 0, 0, 10, 20, 10, 20);
+        canvas.copyBounds(flower2, 100, 0, 10, 20, 10, 20);
         canvas.explore();
     }
 
     public static void myCollage() {
         Picture canvas = new Picture("640x480.jpg");
         Picture beach = new Picture("beach.jpg");
-        canvas.copyBounds(beach, 0, 200, 0, 0);
+        canvas.copyBounds(beach, 0, 10, 0, 30, 0, 30);
+        canvas.copyBounds(beach, 30, 50, 30, 60, 30, 60);
+        canvas.copyBounds(beach, 60, 70, 60, 70, 60, 70);
+        canvas.mirrorDiagonal();
         canvas.explore();
     }
 
-    /** Method to test edgeDetection */
+    /**
+     * Method to test edgeDetection
+     */
     public static void testEdgeDetection() {
         Picture swan = new Picture("swan.jpg");
         swan.edgeDetection(10);

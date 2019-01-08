@@ -29,8 +29,7 @@ public class Picture extends SimplePicture {
     /**
      * Constructor that takes a file name and creates the picture
      *
-     * @param fileName
-     *            the name of the file to create the picture from
+     * @param fileName the name of the file to create the picture from
      */
     public Picture(String fileName) {
         // let the parent class handle this fileName
@@ -40,10 +39,8 @@ public class Picture extends SimplePicture {
     /**
      * Constructor that takes the width and height
      *
-     * @param height
-     *            the height of the desired picture
-     * @param width
-     *            the width of the desired picture
+     * @param height the height of the desired picture
+     * @param width  the width of the desired picture
      */
     public Picture(int height, int width) {
         // let the parent class handle this width and height
@@ -53,8 +50,7 @@ public class Picture extends SimplePicture {
     /**
      * Constructor that takes a picture and creates a copy of that picture
      *
-     * @param copyPicture
-     *            the picture to copy
+     * @param copyPicture the picture to copy
      */
     public Picture(Picture copyPicture) {
         // let the parent class do the copy
@@ -64,8 +60,7 @@ public class Picture extends SimplePicture {
     /**
      * Constructor that takes a buffered image
      *
-     * @param image
-     *            the buffered image to use
+     * @param image the buffered image to use
      */
     public Picture(BufferedImage image) {
         super(image);
@@ -77,7 +72,7 @@ public class Picture extends SimplePicture {
      * Method to return a string with information about this picture.
      *
      * @return a string with information about the picture such as fileName,
-     *         height and width.
+     * height and width.
      */
     public String toString() {
         String output = "Picture, filename " + getFileName() + " height " + getHeight() + " width " + getWidth();
@@ -85,7 +80,9 @@ public class Picture extends SimplePicture {
 
     }
 
-    /** Method to set the blue to 0 */
+    /**
+     * Method to set the blue to 0
+     */
     public void zeroBlue() {
         Pixel[][] pixels = this.getPixels2D();
         for (Pixel[] rowArray : pixels) {
@@ -169,7 +166,9 @@ public class Picture extends SimplePicture {
         }
     }
 
-    /** Mirror just part of a picture of a temple */
+    /**
+     * Mirror just part of a picture of a temple
+     */
     public void mirrorTemple() {
         int mirrorPoint = 276;
         Pixel leftPixel = null;
@@ -222,12 +221,9 @@ public class Picture extends SimplePicture {
      * copy from the passed fromPic to the specified startRow and startCol in
      * the current picture
      *
-     * @param fromPic
-     *            the picture to copy from
-     * @param startRow
-     *            the start row to copy to
-     * @param startCol
-     *            the start col to copy to
+     * @param fromPic  the picture to copy from
+     * @param startRow the start row to copy to
+     * @param startCol the start col to copy to
      */
     public void copy(Picture fromPic, int startRow, int startCol) {
         Pixel fromPixel = null;
@@ -246,14 +242,14 @@ public class Picture extends SimplePicture {
     }
 
     // Second Copy method
-    public void copyBounds(Picture fromPic, int startRow, int endRow, int startCol, int endCol) {
+    public void copyBounds(Picture fromPic, int startRow, int startCol, int startRowCopy, int endRowCopy, int startColCopy, int endColCopy) {
         Pixel fromPixel = null;
         Pixel toPixel = null;
         Pixel[][] toPixels = this.getPixels2D();
         Pixel[][] fromPixels = fromPic.getPixels2D();
-        for (int fromRow = startRow, toRow = endRow; fromRow < fromPixels.length
+        for (int fromRow = startRowCopy, toRow = startRow; fromRow < endRowCopy
                 && toRow < toPixels.length; fromRow++, toRow++) {
-            for (int fromCol = startCol, toCol = endCol; fromCol < fromPixels[0].length
+            for (int fromCol = startColCopy, toCol = startCol; fromCol < endColCopy
                     && toCol < toPixels[0].length; fromCol++, toCol++) {
                 fromPixel = fromPixels[fromRow][fromCol];
                 toPixel = toPixels[toRow][toCol];
@@ -262,7 +258,9 @@ public class Picture extends SimplePicture {
         }
     }
 
-    /** Method to create a collage of several pictures */
+    /**
+     * Method to create a collage of several pictures
+     */
     public void createCollage() {
         Picture flower1 = new Picture("flower1.jpg");
         Picture flower2 = new Picture("flower2.jpg");
@@ -281,14 +279,16 @@ public class Picture extends SimplePicture {
     /**
      * Method to show large changes in color
      *
-     * @param edgeDist
-     *            the distance for finding edges
+     * @param edgeDist the distance for finding edges
      */
     public void edgeDetection(int edgeDist) {
         Pixel leftPixel = null;
         Pixel rightPixel = null;
+        Pixel topPixel = null;
+        Pixel botPixel = null;
         Pixel[][] pixels = this.getPixels2D();
         Color rightColor = null;
+        Color botColor = null;
         for (int row = 0; row < pixels.length; row++) {
             for (int col = 0; col < pixels[0].length - 1; col++) {
                 leftPixel = pixels[row][col];
@@ -298,6 +298,17 @@ public class Picture extends SimplePicture {
                     leftPixel.setColor(Color.BLACK);
                 else
                     leftPixel.setColor(Color.WHITE);
+            }
+        }
+        for (int row = 0; row < pixels.length; row++) {
+            for (int col = 0; col < pixels[0].length - 1; col++) {
+                topPixel = pixels[row][col];
+                botPixel = pixels[row][col + 1];
+                botColor = botPixel.getColor();
+                if (topPixel.colorDistance(botColor) > edgeDist)
+                    topPixel.setColor(Color.BLACK);
+                else
+                    topPixel.setColor(Color.WHITE);
             }
         }
     }
